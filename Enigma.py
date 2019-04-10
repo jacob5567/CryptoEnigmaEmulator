@@ -3,7 +3,9 @@
 
 def main():
     # input("Welcome to the Enigma Machine emulator. Enter plaintext to be encrypted.\n")
-    plaintext = "hello there"
+    
+    # Enter plaintext here
+    plaintext = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     plaintext = plaintext.upper()
     print(plaintext)
     print("The first step in encoding a message in the Enigma involves a plugboard.")
@@ -39,6 +41,8 @@ def main():
     reflector = dict(zip(list("ZEFUHBDMNIJGACVTQRWYXOSLPK"),
                          list("GBURKVPSFHJTMXAIEZLNWODQYC")))
 
+    final_result = ""
+
     for character in plaintext:
         if character in alphabet:
             current = character
@@ -62,6 +66,39 @@ def main():
             print("Turned into " + current + " by the second rotor.")
             current = rotor_3[current]
             print("Turned into " + current + " by the third rotor.")
+
+            # now the letter is reflected back through the same rotors
+            current = reflector[current]
+            print("Turned into " + current + " by the reflector.")
+
+            # TODO make reverse versions of the rotors
+            current = rotor_3[current]
+            print("Turned into " + current + " by the third rotor.")
+            current = rotor_2[current]
+            print("Turned into " + current + " by the second rotor.")
+            current = rotor_1[current]
+            print("Turned into " + current + " by the first rotor.")
+            rotor_1 = rotate_rotor(rotor_1)
+            print("First rotor rotated.") # TODO see if this is accurate
+            if rotor_1 == rotor_1_backup:
+                rotor_2 = rotate_rotor(rotor_2)
+                print("Second rotor rotated.")
+                if rotor_2 == rotor_2_backup:
+                    rotor_3 = rotate_rotor(rotor_3)
+                    print("Third rotor rotated.")
+
+            # TODO make reverse version of the plugboard
+            current = plugboard[current]
+            print("Turned into " + current + " by the plugboard.")
+            print("Final character encryption: " + current + "\n\n")
+            final_result += current
+        else:
+            final_result += character
+
+    
+    print("The final result is: " + final_result)
+    # TODO decryption
+    # TODO final presentation of the ciphertext
 
 
 def rotate_rotor(rotor):
