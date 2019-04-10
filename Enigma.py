@@ -2,29 +2,28 @@
 
 
 def main():
-    # input("Welcome to the Enigma Machine emulator. Enter plaintext to be encrypted.\n")
-    
+    # plaintext = input("Welcome to the Enigma Machine emulator. Enter plaintext to be encrypted.\n")
+
     # Enter plaintext here
     plaintext = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     plaintext = plaintext.upper()
-    print(plaintext)
+    print("Plaintext: " + plaintext)
+
     print("The first step in encoding a message in the Enigma involves a plugboard.")
     print("This would be set every day and sent out to the German soldiers in WWII.")
     print("For this example, the plugboard will be set as follows:")
+
     alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     plugboard_locations = list("ETWAYDSVFPRCQJXOGUHZNLIMBK")
     plugboard = dict(zip(alphabet, plugboard_locations))
-    for key in plugboard.keys():
-        print(key + ' ', end='')
-    print()
-    for value in plugboard.values():
-        print(value + ' ', end='')
-    print()
+    
+    print_rotor(plugboard)
+
     print("In this example, " + alphabet[0] + " corresponds to " + plugboard_locations[0] +
-          ", " + alphabet[1] + " corresponds to " + plugboard_locations[1] + ", and so on.")
+          ", " + alphabet[1] + " corresponds to " + plugboard_locations[1] + ", and so on.\n")
 
     print("The Enigma would convert your first letter, " +
-          plaintext[0] + ", to " + plugboard[plaintext[0]] + ".")
+          plaintext[0] + ", to " + plugboard[plaintext[0]] + ".\n\n")
 
     # Note that the print statements will be expanded on in the future, for this rough draft, I will just work on the internals of the Enigma
     rotor_1 = dict(zip(list("HLKEGUYWRDCNTBFVQIZPMXSAJO"),
