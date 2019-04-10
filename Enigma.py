@@ -22,6 +22,18 @@ def main():
     print("The Enigma would convert your first letter, " + plaintext[0] + ", to " + plugboard[plaintext[0]] + ".")
 
     # Note that the print statements will be expanded on in the future, for this rough draft, I will just work on the internals of the Enigma
+    rotor_1 = dict(zip(list("HLKEGUYWRDCNTBFVQIZPMXSAJO")), list("GWHDISFZYJATEPCLVUNXMQRKOB"))
+    rotor_2 = dict(zip(list("XRUPTZEFDSHCMNOJQWLYVGIABK")), list("OPTNYFGUERBQSZWAHJMVLKDXIC"))
+    rotor_3 = dict(zip(list("THXIJYKMZDAOWVSEQFBPUNRGCL")), list("VYCKSURPTLNQBMJHDEFXOWGZAI"))
+
+    for character in plaintext:
+        current = character
+        print("Current character: " + current)
+        current = plugboard[current]
+        print("Turned into " + current + " by the plugboard.")
+        current = rotor_1[current]
+        
+        
 
 
 if __name__ == "__main__":
