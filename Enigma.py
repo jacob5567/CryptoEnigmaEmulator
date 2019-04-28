@@ -7,7 +7,7 @@ def main():
     # plaintext = input("Welcome to the Enigma Machine emulator. Enter plaintext to be encrypted.\n")
 
     # Enter plaintext here
-    plaintext = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    plaintext = "Hello"  # Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     plaintext = plaintext.upper()
     print("Plaintext: " + plaintext)
 
@@ -31,18 +31,18 @@ def main():
 
     # Note that the print statements will be expanded on in the future, for this rough draft, I will just work on the internals of the Enigma
     rotor_1 = Rotor(list("HLKEGUYWRDCNTBFVQIZPMXSAJO"),
-                       list("GWHDISFZYJATEPCLVUNXMQRKOB"))
+                    list("GWHDISFZYJATEPCLVUNXMQRKOB"))
     rotor_2 = Rotor(list("XRUPTZEFDSHCMNOJQWLYVGIABK"),
-                       list("OPTNYFGUERBQSZWAHJMVLKDXIC"))
+                    list("OPTNYFGUERBQSZWAHJMVLKDXIC"))
     rotor_3 = Rotor(list("THXIJYKMZDAOWVSEQFBPUNRGCL"),
-                       list("VYCKSURPTLNQBMJHDEFXOWGZAI"))
+                    list("VYCKSURPTLNQBMJHDEFXOWGZAI"))
 
     rotor_1_backup = rotor_1.copy()
     rotor_2_backup = rotor_2.copy()
-    rotor_3_backup = rotor_3.copy()
+    # rotor_3_backup = rotor_3.copy()
 
     reflector = Rotor(list("ZEFUHBDMNIJGACVTQRWYXOSLPK"),
-                         list("GBURKVPSFHJTMXAIEZLNWODQYC"))
+                      list("GBURKVPSFHJTMXAIEZLNWODQYC"))
 
     final_result = ""
 
@@ -75,11 +75,11 @@ def main():
             print("Turned into " + current + " by the reflector.")
 
             # TODO make reverse versions of the rotors
-            current = rotor_3[current]
+            current = rotor_3.getR(current)
             print("Turned into " + current + " by the third rotor.")
-            current = rotor_2[current]
+            current = rotor_2.getR(current)
             print("Turned into " + current + " by the second rotor.")
-            current = rotor_1[current]
+            current = rotor_1.getR(current)
             print("Turned into " + current + " by the first rotor.")
             rotor_1.rotate()
             print("First rotor rotated.")  # TODO see if this is accurate
@@ -101,31 +101,6 @@ def main():
     print("The final result is: " + final_result)
     # TODO decryption
     # TODO final presentation of the ciphertext
-
-
-# def rotate_rotor(rotor):
-#     keys = list()
-#     values = list()
-#     for key, value in rotor.items():
-#         keys.append(key)
-#         values.append(value)
-
-#     # rotating the rotor
-#     first_char = values[0]
-#     for i in range(len(values) - 1):
-#         values[i] = values[i + 1]
-#     values[len(values) - 1] = first_char
-
-#     return dict(zip(keys, values))
-
-
-# def print_rotor(rotor):
-#     for key in rotor.keys():
-#         print(key + ' ', end='')
-#     print()
-#     for value in rotor.values():
-#         print(value + ' ', end='')
-#     print()
 
 
 if __name__ == "__main__":
