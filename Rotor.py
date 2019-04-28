@@ -1,10 +1,22 @@
 # Jacob Faulk
 
+from random import shuffle
 
 class Rotor:
-    def __init__(self, side1, side2):
-        self.side1 = side1
-        self.side2 = side2
+
+    alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+
+    def __init__(self, side1=None, side2=None):
+        if(side1 == None):
+            self.side1 = Rotor.alphabet.copy()
+            shuffle(side1)
+        else:
+            self.side1 = side1
+        if(side2 == None):
+            self.side2 = Rotor.alphabet.copy()
+            shuffle(side2)
+        else:
+            self.side2 = side2
 
     def __getitem__(self, key):
         key_index = self.side1.index(key)
@@ -13,6 +25,9 @@ class Rotor:
     def getR(self, key):
         key_index = self.side2.index(key)
         return self.side1[key_index]
+
+    def in_first_position(self, key):
+        return self.side1.index(key) == 0
 
     def rotate(self):
         first_char = self.side2[0]

@@ -26,9 +26,6 @@ def main():
     print("In this example, " + plugboard.side1[0] + " corresponds to " + plugboard.side2[0] +
           ", " + plugboard.side1[1] + " corresponds to " + plugboard.side2[1] + ", and so on.\n")
 
-    print("The Enigma would convert your first letter, " +
-          plaintext[0] + ", to " + plugboard[plaintext[0]] + ".\n\n")
-
     # Note that the print statements will be expanded on in the future, for this rough draft, I will just work on the internals of the Enigma
     rotor_1 = Rotor(list("HLKEGUYWRDCNTBFVQIZPMXSAJO"),
                     list("GWHDISFZYJATEPCLVUNXMQRKOB"))
@@ -36,10 +33,6 @@ def main():
                     list("OPTNYFGUERBQSZWAHJMVLKDXIC"))
     rotor_3 = Rotor(list("THXIJYKMZDAOWVSEQFBPUNRGCL"),
                     list("VYCKSURPTLNQBMJHDEFXOWGZAI"))
-
-    rotor_1_backup = rotor_1.copy()
-    rotor_2_backup = rotor_2.copy()
-    # rotor_3_backup = rotor_3.copy()
 
     reflector = Rotor(list("ZEFUHBDMNIJGACVTQRWYXOSLPK"),
                       list("GBURKVPSFHJTMXAIEZLNWODQYC"))
@@ -57,11 +50,10 @@ def main():
             rotor_1.rotate()
             print("First rotor rotated.")
 
-            # this rotates the other rotors when the first one makes a complete rotation
-            if rotor_1 == rotor_1_backup:
+            if rotor_1.in_first_position('R'):
                 rotor_2.rotate()
                 print("Second rotor rotated.")
-                if rotor_2 == rotor_2_backup:
+                if rotor_2.in_first_position('F'):
                     rotor_3.rotate()
                     print("Third rotor rotated.")
 
@@ -82,16 +74,16 @@ def main():
             current = rotor_1.getR(current)
             print("Turned into " + current + " by the first rotor.")
             rotor_1.rotate()
-            print("First rotor rotated.")  # TODO see if this is accurate
-            if rotor_1 == rotor_1_backup:
+            print("First rotor rotated.")
+            if rotor_1.in_first_position('R'):
                 rotor_2.rotate()
                 print("Second rotor rotated.")
-                if rotor_2 == rotor_2_backup:
+                if rotor_2.in_first_position('F'):
                     rotor_3.rotate()
                     print("Third rotor rotated.")
 
             # TODO make reverse version of the plugboard
-            current = plugboard[current]
+            current = plugboard.getR(current)
             print("Turned into " + current + " by the plugboard.")
             print("Final character encryption: " + current + "\n\n")
             final_result += current
