@@ -15,7 +15,6 @@ def main():
     print("This would be set every day and sent out to the German soldiers in WWII.")
     print("For this example, the plugboard will be set as follows:")
 
-
     # TODO make plugboard historically accurate
     alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     plugboard_locations = list("ETWAYDSVFPRCQJXOGUHZNLIMBK")
@@ -28,9 +27,12 @@ def main():
     print("In this example, " + plugboard.side1[0] + " corresponds to " + plugboard.side2[0] +
           ", " + plugboard.side1[1] + " corresponds to " + plugboard.side2[1] + ", and so on.\n")
 
-    rotor1 = Rotor(rotorNumber=1) # Rotor(list("HLKEGUYWRDCNTBFVQIZPMXSAJO"), list("GWHDISFZYJATEPCLVUNXMQRKOB"))
-    rotor2 = Rotor(rotorNumber=2) # Rotor(list("XRUPTZEFDSHCMNOJQWLYVGIABK"), list("OPTNYFGUERBQSZWAHJMVLKDXIC"))
-    rotor3 = Rotor(rotorNumber=3) # Rotor(list("THXIJYKMZDAOWVSEQFBPUNRGCL"), list("VYCKSURPTLNQBMJHDEFXOWGZAI"))
+    # Rotor(list("HLKEGUYWRDCNTBFVQIZPMXSAJO"), list("GWHDISFZYJATEPCLVUNXMQRKOB"))
+    rotor1 = Rotor(rotorNumber=1)
+    # Rotor(list("XRUPTZEFDSHCMNOJQWLYVGIABK"), list("OPTNYFGUERBQSZWAHJMVLKDXIC"))
+    rotor2 = Rotor(rotorNumber=2)
+    # Rotor(list("THXIJYKMZDAOWVSEQFBPUNRGCL"), list("VYCKSURPTLNQBMJHDEFXOWGZAI"))
+    rotor3 = Rotor(rotorNumber=3)
 
     reflector = Rotor(list("ZEFUHBDMNIJGACVTQRWYXOSLPK"),
                       list("GBURKVPSFHJTMXAIEZLNWODQYC"))

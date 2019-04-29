@@ -2,6 +2,7 @@
 
 from random import shuffle
 
+
 class Rotor:
 
     alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
@@ -11,7 +12,7 @@ class Rotor:
             self.side1 = Rotor.alphabet.copy()
         else:
             self.side1 = side1
-        
+
         if(side2 == None):
             if rotorNumber == 1:
                 self.side2 = list("EKMFLGDQVZNTOWYHXUSPAIBRCJ")
