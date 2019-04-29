@@ -4,7 +4,8 @@ from Rotor import Rotor
 
 
 def main():
-    plaintext = input("Welcome to the Enigma Machine emulator. Enter plaintext to be encrypted.\n")
+    plaintext = input(
+        "Welcome to the Enigma Machine emulator. Enter plaintext to be encrypted.\n")
 
     plaintext = plaintext.upper()
     print("Plaintext: " + plaintext)
