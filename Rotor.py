@@ -1,7 +1,5 @@
 # Jacob Faulk
 
-from random import shuffle
-
 
 class Rotor:
 
