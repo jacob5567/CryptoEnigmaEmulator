@@ -6,15 +6,21 @@ class Rotor:
 
     alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
-    def __init__(self, side1=None, side2=None):
+    def __init__(self, side1=None, side2=None, rotorNumber=0):
         if(side1 == None):
             self.side1 = Rotor.alphabet.copy()
-            shuffle(side1)
         else:
             self.side1 = side1
+        
         if(side2 == None):
-            self.side2 = Rotor.alphabet.copy()
-            shuffle(side2)
+            if rotorNumber == 1:
+                self.side2 = list("EKMFLGDQVZNTOWYHXUSPAIBRCJ")
+            elif rotorNumber == 2:
+                self.side2 = list("AJDKSIRUXBLHWTMCQGZNPYFVOE")
+            elif rotorNumber == 3:
+                self.side2 = list("BDFHJLCPRTXVZNYEIWGAKMUSQO")
+            else:
+                self.side2 = list("ESOVPZJAYQUIRHXLNFTGKDCMWB")
         else:
             self.side2 = side2
 

@@ -15,6 +15,8 @@ def main():
     print("This would be set every day and sent out to the German soldiers in WWII.")
     print("For this example, the plugboard will be set as follows:")
 
+
+    # TODO make plugboard historically accurate
     alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     plugboard_locations = list("ETWAYDSVFPRCQJXOGUHZNLIMBK")
     plugboard = dict(zip(alphabet, plugboard_locations))
@@ -26,13 +28,9 @@ def main():
     print("In this example, " + plugboard.side1[0] + " corresponds to " + plugboard.side2[0] +
           ", " + plugboard.side1[1] + " corresponds to " + plugboard.side2[1] + ", and so on.\n")
 
-    # Note that the print statements will be expanded on in the future, for this rough draft, I will just work on the internals of the Enigma
-    rotor_1 = Rotor(list("HLKEGUYWRDCNTBFVQIZPMXSAJO"),
-                    list("GWHDISFZYJATEPCLVUNXMQRKOB"))
-    rotor_2 = Rotor(list("XRUPTZEFDSHCMNOJQWLYVGIABK"),
-                    list("OPTNYFGUERBQSZWAHJMVLKDXIC"))
-    rotor_3 = Rotor(list("THXIJYKMZDAOWVSEQFBPUNRGCL"),
-                    list("VYCKSURPTLNQBMJHDEFXOWGZAI"))
+    rotor1 = Rotor(rotorNumber=1) # Rotor(list("HLKEGUYWRDCNTBFVQIZPMXSAJO"), list("GWHDISFZYJATEPCLVUNXMQRKOB"))
+    rotor2 = Rotor(rotorNumber=2) # Rotor(list("XRUPTZEFDSHCMNOJQWLYVGIABK"), list("OPTNYFGUERBQSZWAHJMVLKDXIC"))
+    rotor3 = Rotor(rotorNumber=3) # Rotor(list("THXIJYKMZDAOWVSEQFBPUNRGCL"), list("VYCKSURPTLNQBMJHDEFXOWGZAI"))
 
     reflector = Rotor(list("ZEFUHBDMNIJGACVTQRWYXOSLPK"),
                       list("GBURKVPSFHJTMXAIEZLNWODQYC"))
@@ -45,41 +43,40 @@ def main():
             print("Current character: " + current)
             current = plugboard[current]
             print("Turned into " + current + " by the plugboard.")
-            current = rotor_1[current]
+            current = rotor1[current]
             print("Turned into " + current + " by the first rotor.")
-            rotor_1.rotate()
+            rotor1.rotate()
             print("First rotor rotated.")
 
-            if rotor_1.in_first_position('R'):
-                rotor_2.rotate()
+            if rotor1.in_first_position('R'):
+                rotor2.rotate()
                 print("Second rotor rotated.")
-                if rotor_2.in_first_position('F'):
-                    rotor_3.rotate()
+                if rotor2.in_first_position('F'):
+                    rotor3.rotate()
                     print("Third rotor rotated.")
 
-            current = rotor_2[current]
+            current = rotor2[current]
             print("Turned into " + current + " by the second rotor.")
-            current = rotor_3[current]
+            current = rotor3[current]
             print("Turned into " + current + " by the third rotor.")
 
             # now the letter is reflected back through the same rotors
             current = reflector[current]
             print("Turned into " + current + " by the reflector.")
 
-            # TODO make reverse versions of the rotors
-            current = rotor_3.getR(current)
+            current = rotor3.getR(current)
             print("Turned into " + current + " by the third rotor.")
-            current = rotor_2.getR(current)
+            current = rotor2.getR(current)
             print("Turned into " + current + " by the second rotor.")
-            current = rotor_1.getR(current)
+            current = rotor1.getR(current)
             print("Turned into " + current + " by the first rotor.")
-            rotor_1.rotate()
+            rotor1.rotate()
             print("First rotor rotated.")
-            if rotor_1.in_first_position('R'):
-                rotor_2.rotate()
+            if rotor1.in_first_position('R'):
+                rotor2.rotate()
                 print("Second rotor rotated.")
-                if rotor_2.in_first_position('F'):
-                    rotor_3.rotate()
+                if rotor2.in_first_position('F'):
+                    rotor3.rotate()
                     print("Third rotor rotated.")
 
             # TODO make reverse version of the plugboard
@@ -91,7 +88,6 @@ def main():
             final_result += character
 
     print("The final result is: " + final_result)
-    # TODO decryption
     # TODO final presentation of the ciphertext
 
 
