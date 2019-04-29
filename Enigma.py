@@ -15,17 +15,11 @@ def main():
     print("This would be set every day and sent out to the German soldiers in WWII.")
     print("For this example, the plugboard will be set as follows:")
 
-    # TODO make plugboard historically accurate
     alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-    plugboard_locations = list("ETWAYDSVFPRCQJXOGUHZNLIMBK")
-    plugboard = dict(zip(alphabet, plugboard_locations))
 
-    plugboard = Rotor(alphabet, plugboard_locations)
+    plugboard = Plugboard()
 
     print(plugboard)
-
-    print("In this example, " + plugboard.side1[0] + " corresponds to " + plugboard.side2[0] +
-          ", " + plugboard.side1[1] + " corresponds to " + plugboard.side2[1] + ", and so on.\n")
 
     rotor1 = Rotor(rotorNumber=1)
     rotor2 = Rotor(rotorNumber=2)
@@ -78,8 +72,7 @@ def main():
                     rotor3.rotate()
                     print("Third rotor rotated.")
 
-            # TODO make reverse version of the plugboard
-            current = plugboard.getR(current)
+            current = plugboard[current]
             print("Turned into " + current + " by the plugboard.")
             print("Final character encryption: " + current + "\n\n")
             final_result += current
@@ -87,6 +80,39 @@ def main():
             final_result += character
 
     print("The final result is: " + final_result)
+
+
+class Plugboard:
+    def __init__(self):
+        self.plugs = {
+            "B": "Q",
+            "C": "R",
+            "D": "I",
+            "E": "J",
+            "K": "W",
+            "M": "T",
+            "O": "S",
+            "P": "X",
+            "U": "Z",
+            "G": "H"
+        }
+        # add reversed settings
+        temp_plugs = {}
+        for key, value in self.plugs.items():
+            temp_plugs[value] = key
+        self.plugs.update(temp_plugs)
+
+    def __getitem__(self, key):
+        return self.plugs.get(key, key)
+
+    def __str__(self):
+        print_this = ""
+        for key in self.plugs.keys():
+            print_this += key + " "
+        print_this += "\n"
+        for value in self.plugs.values():
+            print_this += value + " "
+        return print_this
 
 
 if __name__ == "__main__":
