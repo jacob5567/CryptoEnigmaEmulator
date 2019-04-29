@@ -27,11 +27,8 @@ def main():
     print("In this example, " + plugboard.side1[0] + " corresponds to " + plugboard.side2[0] +
           ", " + plugboard.side1[1] + " corresponds to " + plugboard.side2[1] + ", and so on.\n")
 
-    # Rotor(list("HLKEGUYWRDCNTBFVQIZPMXSAJO"), list("GWHDISFZYJATEPCLVUNXMQRKOB"))
     rotor1 = Rotor(rotorNumber=1)
-    # Rotor(list("XRUPTZEFDSHCMNOJQWLYVGIABK"), list("OPTNYFGUERBQSZWAHJMVLKDXIC"))
     rotor2 = Rotor(rotorNumber=2)
-    # Rotor(list("THXIJYKMZDAOWVSEQFBPUNRGCL"), list("VYCKSURPTLNQBMJHDEFXOWGZAI"))
     rotor3 = Rotor(rotorNumber=3)
 
     reflector = Rotor(list("ZEFUHBDMNIJGACVTQRWYXOSLPK"),
@@ -62,7 +59,7 @@ def main():
             current = rotor3[current]
             print("Turned into " + current + " by the third rotor.")
 
-            # now the letter is reflected back through the same rotors
+            # TODO make the reflector settable and historically accurate
             current = reflector[current]
             print("Turned into " + current + " by the reflector.")
 
@@ -90,7 +87,6 @@ def main():
             final_result += character
 
     print("The final result is: " + final_result)
-    # TODO final presentation of the ciphertext
 
 
 if __name__ == "__main__":
