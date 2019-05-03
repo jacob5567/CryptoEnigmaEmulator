@@ -11,8 +11,6 @@ def main():
     plaintext = plaintext.upper()
     print("Plaintext: " + plaintext)
 
-    input()
-
     alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
     plugboard = Plugboard()
@@ -29,22 +27,16 @@ def main():
                       list("GBURKVPSFHJTMXAIEZLNWODQYC"))
 
     final_result = ""
-    first_iteration = True
 
     for character in plaintext:
         if character in alphabet:
             current = character
             print("Current character: " + current)
-            if first_iteration:
-                input()
+
             current = plugboard[current]
             print("Turned into " + current + " by the plugboard.")
-            if first_iteration:
-                input()
             current = rotor1[current]
             print("Turned into " + current + " by the first rotor.")
-            if first_iteration:
-                input()
             rotor1.rotate()
             print("First rotor rotated.")
 
@@ -57,30 +49,17 @@ def main():
 
             current = rotor2[current]
             print("Turned into " + current + " by the second rotor.")
-            if first_iteration:
-                input()
             current = rotor3[current]
             print("Turned into " + current + " by the third rotor.")
-            if first_iteration:
-                input()
-
             current = reflector[current]
             print("Turned into " + current + " by the reflector.")
-            if first_iteration:
-                input()
-
             current = rotor3.getR(current)
             print("Turned into " + current + " by the third rotor.")
-            if first_iteration:
-                input()
             current = rotor2.getR(current)
             print("Turned into " + current + " by the second rotor.")
-            if first_iteration:
-                input()
             current = rotor1.getR(current)
             print("Turned into " + current + " by the first rotor.")
-            if first_iteration:
-                input()
+
             rotor1.rotate()
             print("First rotor rotated.")
             if rotor1.in_first_position('R'):
@@ -96,8 +75,6 @@ def main():
             final_result += current
         else:
             final_result += character
-        first_iteration = False
-        input()
 
     print("The final result is: " + final_result)
 
